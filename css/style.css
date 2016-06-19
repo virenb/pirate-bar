@@ -1,0 +1,14 @@
+body {
+	font-family: 'Kaushan Script', cursive;
+	background: url('../bar.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1 {
+	font-size: 4em;
+	color: #fff;
+	text-align: center;
+}
