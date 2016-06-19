@@ -3,8 +3,58 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Pirate Bartender</title>
+	<link rel="stylesheet" href="css/fonts.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 </head>
 <body>
-	
+	<h1>Welcome to the Pirate's Bar</h1>
+	<h4>Please make your drink preferences selection below. </h4>
+	<div id="divQuestions"></div>
+<button id="result">Results</button>
+	<script>
+		function Ingredient(ingredient, type){
+  this.name = ingredient;
+  this.type = type;
+}
+function Question(question, type){
+  this.name = question;
+  this.type = type;
+}
+function Pantry(recipe){
+  this.name = recipe;
+  this.types = [];
+  this.ingredients = [];
+}
+
+var questions = [];
+questions.push(new Question("Do ye like yer drinks strong?", "strong"));
+questions.push(new Question("Do ye like it with a salty tang?", "salty"));
+questions.push(new Question("Are ye a lubber who likes it bitter?", "bitter"));
+questions.push(new Question("Would ye like a bit of sweetness with yer poison?", "sweet"));
+questions.push(new Question("Are ye one for a fruity finish?", "fruity"));
+
+var ingredients = [];
+ingredients.push(new Ingredient("Glug of rum", "strong"));
+ingredients.push(new Ingredient("slug of whisky", "strong"));
+ingredients.push(new Ingredient("splash of gin", "strong"));
+ingredients.push(new Ingredient("Olive on a stick", "salty"));
+ingredients.push(new Ingredient("salt-dusted rim", "salty"));
+ingredients.push(new Ingredient("rasher of bacon", "salty"));
+ingredients.push(new Ingredient("Shake of bitters", "bitter"));
+ingredients.push(new Ingredient("splash of tonic", "bitter"));
+ingredients.push(new Ingredient("twist of lemon peel", "bitter"));
+ingredients.push(new Ingredient("Sugar cube", "sweet"));
+ingredients.push(new Ingredient("spoonful of honey", "sweet"));
+ingredients.push(new Ingredient("splash of cola", "sweet"));
+ingredients.push(new Ingredient("Slice of orange", "fruity"));
+ingredients.push(new Ingredient("dash of cassis", "fruity"));
+ingredients.push(new Ingredient("cherry on top", "fruity"));
+
+var recipe = new Pantry("Customer");
+
+
+
+	</script>
 </body>
 </html>
