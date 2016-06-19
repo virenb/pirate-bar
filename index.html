@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Pirate Bartender</title>
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+</head>
+
+<body>
+    <h1>Welcome to the Pirate's Bar</h1>
+
+    <div class="wrapper">
+        <h4>Please make your drink preferences selection below. </h4>
+        <div id="divQuestions"></div>
+
+        <button id="result">Submit</button>
+    </div>
+
+	<script>
+		function Ingredient(ingredient, type) {
+		    this.name = ingredient;
+		    this.type = type;
+		}
+
+		function Question(question, type) {
+		    this.name = question;
+		    this.type = type;
+		}
+
+		function Pantry(recipe) {
+		    this.name = recipe;
+		    this.types = [];
+		    this.ingredients = [];
+		}
+
+		var questions = [];
+		questions.push(new Question("Do ye like yer drinks strong?", "strong"));
+		questions.push(new Question("Do ye like it with a salty tang?", "salty"));
+		questions.push(new Question("Are ye a lubber who likes it bitter?", "bitter"));
+		questions.push(new Question("Would ye like a bit of sweetness with yer poison?", "sweet"));
+		questions.push(new Question("Are ye one for a fruity finish?", "fruity"));
+
+		var ingredients = [];
+		ingredients.push(new Ingredient("Glug of rum", "strong"));
+		ingredients.push(new Ingredient("slug of whisky", "strong"));
+		ingredients.push(new Ingredient("splash of gin", "strong"));
+		ingredients.push(new Ingredient("Olive on a stick", "salty"));
+		ingredients.push(new Ingredient("salt-dusted rim", "salty"));
+		ingredients.push(new Ingredient("rasher of bacon", "salty"));
+		ingredients.push(new Ingredient("Shake of bitters", "bitter"));
+		ingredients.push(new Ingredient("splash of tonic", "bitter"));
+		ingredients.push(new Ingredient("twist of lemon peel", "bitter"));
+		ingredients.push(new Ingredient("Sugar cube", "sweet"));
+		ingredients.push(new Ingredient("spoonful of honey", "sweet"));
+		ingredients.push(new Ingredient("splash of cola", "sweet"));
+		ingredients.push(new Ingredient("Slice of orange", "fruity"));
+		ingredients.push(new Ingredient("dash of cassis", "fruity"));
+		ingredients.push(new Ingredient("cherry on top", "fruity"));
+
+		var recipe = new Pantry("Customer");
+		$.each(questions, function(i, v) {
+		    $("#divQuestions").append('<p><label><input type="checkbox" class="type" value="' + v.type + '" /> ' + v.name + '</label></p>');
+		});
+
+		$("#result").click(function() {
+		    var selected = [];
+		    $('.type:checked').map(function(i, e) {
+		        selected.push($(e).val());
+		    });
+		    recipe.types = selected;
+		    console.log(selected.join(", "));
+		    for (var i = 0; i < recipe.types.length; i++)
+		        for (var j = 0; j < ingredients.length; j++)
+		            if (ingredients[j].type == recipe.types[i])
+		                recipe.ingredients.push(ingredients[j].name);
+
+		    console.log(recipe);
+
+		    var names = ["Parrot Punch", "Ship Wreck", "The Buccaneer", "Cap'n Barbossa", "Famous 'Ol Spiced", "The Pirate's Kiss", "Hot Damn'd", "American Grog", "Admiralty Cocktail", "Anchors Away!", "Aye' Are So Drunk"];
+
+		    alert((recipe.ingredients.length) ? "Your drink is " + names[parseInt(Math.random(0, 100) * names.length)] + "\n" + [recipe.ingredients[parseInt(Math.random(0, 100) * recipe.ingredients.length)], recipe.ingredients[parseInt(Math.random(0, 100) * recipe.ingredients.length)], recipe.ingredients[parseInt(Math.random(0, 100) * recipe.ingredients.length)]].join("\n") : "We cannot offer you anything without selecting at least one!");
+		});
+	</script>
+</body>
+</html>
